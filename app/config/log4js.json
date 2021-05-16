@@ -1,0 +1,72 @@
+{
+  appenders: {
+    stdout: {
+      type: 'stdout'
+    },
+    out: {
+      type: 'console',
+      layout: {
+        type: 'pattern',
+        pattern: '[%d{MM/dd hh:mm:ss}] [%p] %m'
+      }
+    }, //控制台输出
+    AppOutFile: {
+      type: 'dateFile',
+      filename: 'data/logs/App/main',
+      pattern: 'yyyy-MM-dd hh:mm:ss.log',
+      category: 'normal',
+      layout: {
+        type: 'pattern',
+        pattern: '[%d] [%p] %m'
+      },
+      alwaysIncludePattern: true
+    }, //文件输出
+    HttpOutFile: {
+      type: 'dateFile',
+      filename: 'data/logs/Web/main',
+      pattern: 'yyyy-MM-dd hh:mm:ss.log',
+      category: 'normal',
+      layout: {
+        type: 'pattern',
+        pattern: '[%d] [%p] %m'
+      },
+      alwaysIncludePattern: true
+    }, //文件输出
+    ApiOutFile: {
+      type: 'dateFile',
+      filename: 'data/logs/Api/main',
+      pattern: 'yyyy-MM-dd hh:mm:ss.log',
+      category: 'normal',
+      layout: {
+        type: 'pattern',
+        pattern: '[%d] [%p] %m'
+      },
+      alwaysIncludePattern: true
+    }, //文件输出
+    DBOutFile: {
+      type: 'dateFile',
+      filename: 'data/logs/DB/main',
+      pattern: 'yyyy-MM-dd.log',
+      category: 'normal',
+      layout: {
+        type: 'pattern',
+        pattern: '[%d] [%p] %m'
+      },
+      alwaysIncludePattern: true
+    } //文件输出
+  },
+  categories: {
+    //默认日志记录器
+    default: {
+      appenders: ['out', 'AppOutFile'],
+      level: 'DEBUG'
+    },
+    //http事件记录器
+    http: { appenders: ['HttpOutFile'], level: 'ALL' },
+    //Api记录器
+    api: { appenders: ['ApiOutFile'], level: 'INFO' },
+    //数据库日志记录器
+    db: { appenders: ['DBOutFile'], level: 'ALL' }
+  },
+  replaceConsole: true //替换console.log
+}
